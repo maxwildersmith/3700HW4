@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+@SuppressWarnings("unused")
 public class Main {
     public static void main(String[] args) {
         System.out.println("\nPerforming part 3 of the assignment...\n");
@@ -26,17 +27,16 @@ public class Main {
 
     private static void translate(){
         System.out.println("\nTranslating the Declaration of Independence to French....\n\t(make sure the GOOGLE_APPLICATION_CREDENTIALS env variable is properly configured)");
-        String translated = "";
+        String translated;
         long sTime = System.currentTimeMillis();
-        translated = Translator.singleThread("DeclarationIndependence.txt","fr");
+        Translator.singleThread("DeclarationIndependence.txt","fr");
         System.out.println("Time for single threaded translation: "+(System.currentTimeMillis()-sTime)+"ms");
 
         sTime = System.currentTimeMillis();
         translated = Translator.multiThread("DeclarationIndependence.txt","fr",Runtime.getRuntime().availableProcessors());
         System.out.println("Time for multi threaded translation: "+(System.currentTimeMillis()-sTime)+"ms");
-        FileOutputStream out = null;
         try {
-            out = new FileOutputStream("translated.txt");
+            FileOutputStream out = new FileOutputStream("translated.txt");
             out.write(translated.getBytes());
             out.close();
             System.out.println("Wrote translated text to translated.txt");
@@ -45,6 +45,12 @@ public class Main {
         }
     }
 
+    /**
+     * Helper function to ensure two files are the exact same
+     * @param inFile First file to check against
+     * @param outFile Second file to check
+     * @return True if they are the same, false otherwise
+     */
     public static boolean verifyCorrect(String inFile, String outFile){
         try {
             byte[] file1 = new FileInputStream(inFile).readAllBytes();

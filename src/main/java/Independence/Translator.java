@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.concurrent.*;
 
+@SuppressWarnings("ALL")
 public class Translator {
     public static String singleThread(String sourcePath, String language){
         Translate translate = TranslateOptions.getDefaultInstance().getService();
@@ -28,6 +29,7 @@ public class Translator {
         return out;
     }
 
+
     public static String multiThread(String sourcePath, String language, int numThreads){
         ExecutorService exec = Executors.newFixedThreadPool(numThreads);
         Future<String>[] outputs = new Future[numThreads];
@@ -40,7 +42,9 @@ public class Translator {
             int size = lines.size()/(numThreads-1);
             for(int i=0;i<numThreads;i++){
                 int start = i;
-                outputs[i] = exec.submit(() -> translate.translate(listToString(lines.subList(start*size,Math.min((start+1)*size, lines.size()))), Translate.TranslateOption.targetLanguage(language), Translate.TranslateOption.format("text")).getTranslatedText());
+                outputs[i] = exec.submit(() -> translate.translate(
+                        listToString(lines.subList(start*size,Math.min((start+1)*size, lines.size()))),
+                        Translate.TranslateOption.targetLanguage(language), Translate.TranslateOption.format("text")).getTranslatedText());
             }
             exec.shutdown();
 

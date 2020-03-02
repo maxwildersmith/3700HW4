@@ -1,11 +1,11 @@
 package RockPaperScisssors.Game1;
 
-import RockPaperScisssors.Play;
 import RockPaperScisssors.Player;
 
 import java.util.*;
 import java.util.concurrent.*;
 
+@SuppressWarnings("ALL")
 public class Tech1 {
 
     public Tech1(int numPlayer, int numThreads){

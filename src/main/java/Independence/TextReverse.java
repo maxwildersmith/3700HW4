@@ -7,7 +7,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+@SuppressWarnings("ALL")
 public class TextReverse {
+
     public static void singleThreadReverse(String inputFilePath, String outputFilePath){
         try {
             Scanner input = new Scanner(new File(inputFilePath));
@@ -64,9 +66,7 @@ public class TextReverse {
             FileOutputStream output = new FileOutputStream(outputFilePath);
             output.write(str.getBytes());
             output.close();
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (IOException | InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
     }

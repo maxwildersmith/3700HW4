@@ -21,7 +21,7 @@ public class Match implements Callable<Player> {
     }
 
     @Override
-    public Player call() throws Exception {
+    public Player call() {
         if(p2==null)
             return p1;
         Player winner = p1.play.score(p2.play)>=0?p1:p2;

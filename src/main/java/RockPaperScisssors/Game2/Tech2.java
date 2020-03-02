@@ -4,6 +4,7 @@ import RockPaperScisssors.Player;
 
 import java.util.concurrent.*;
 
+@SuppressWarnings("ALL")
 public class Tech2 {
 
     public Tech2(int numPlayers, int numThreads){
