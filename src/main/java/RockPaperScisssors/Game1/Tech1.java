@@ -8,6 +8,11 @@ import java.util.concurrent.*;
 @SuppressWarnings("ALL")
 public class Tech1 {
 
+    /**
+     * Rock Paper Scissors Battle Royale with a simple thread pool
+     * @param numPlayer The number of players to play with
+     * @param numThreads The number of threads to use
+     */
     public Tech1(int numPlayer, int numThreads){
         List<Player> players = new ArrayList<>();
         for(int i=0;i<numPlayer;i++)

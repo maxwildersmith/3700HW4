@@ -7,6 +7,11 @@ import java.util.concurrent.*;
 @SuppressWarnings("ALL")
 public class Tech2 {
 
+    /**
+     * Runs a tournement style Rock Paper Scissors with Blocking Queue
+     * @param numPlayers The number of players to run with
+     * @param numThreads The number of threads to use
+     */
     public Tech2(int numPlayers, int numThreads){
 
         BlockingQueue<Match> matches = new ArrayBlockingQueue<>(numPlayers);
